@@ -6,6 +6,10 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
+local_env_path = File.expand_path('../../env.local.rb', __FILE__)
+require local_env_path if File.exists?(local_env_path)
+require File.expand_path('../../env.rb', __FILE__)
+
 module HairyTribble
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

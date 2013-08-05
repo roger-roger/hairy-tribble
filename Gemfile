@@ -6,7 +6,7 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-# Use SCSS for stylesheets
+# Use LESS for stylesheets
 gem 'less-rails'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -32,14 +32,25 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem "rspec-rails", group: [:test, :development]
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :development do
+  gem 'quiet_assets'        # silence those assets
+end
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
+group :test do
+  gem 'spork', '~> 1.0rc'                         # faster tests
+  gem 'spork-rails', github: 'sporkrb/spork-rails'
+  gem "factory_girl_rails"                  # factories for testing
+  gem "rb-fsevent"                          # filesystem change api for OS X
+  gem "guard-spork"                         # guard spork integration
+  gem "guard-rspec"                         # guard rspec integration
+  gem 'simplecov', require: false           # code coverage
+  gem 'shoulda-matchers'
+end
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'thin'
+gem 'haml'
+gem 'haml-rails'
+gem 'pry' 
+gem 'pry-rails'
