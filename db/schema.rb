@@ -11,12 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130805015840) do
+ActiveRecord::Schema.define(version: 20130805045049) do
 
   create_table "accounts", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "list_items", force: true do |t|
+    t.integer  "list_id"
+    t.string   "name"
+    t.string   "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "list_items", ["list_id"], name: "index_list_items_on_list_id"
+
+  create_table "list_types", force: true do |t|
+    t.integer  "account_id"
+    t.string   "name"
+    t.string   "color"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "list_types", ["account_id"], name: "index_list_types_on_account_id"
+
+  create_table "lists", force: true do |t|
+    t.integer  "account_id"
+    t.string   "name"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lists", ["account_id"], name: "index_lists_on_account_id"
 
   create_table "residences", force: true do |t|
     t.integer  "account_id"
